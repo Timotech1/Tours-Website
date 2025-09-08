@@ -1,227 +1,271 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SafariGo — Find your next tour</title>
-  <meta name="description" content="Find and book tours, safaris, and activities across Kenya and beyond." />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SafariGo — Find your next tour</title>
+<meta name="description" content="Find and book tours, safaris, and activities across Kenya and beyond." />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --brand:#003b95;
-      --brand-2:#0a58ca;
-      --ink:#0f172a;
-      --muted:#475569;
-      --bg:#ffffff;
-      --card:#f8fafc;
-      --ring:#ffd166;
-      --success:#0ea5e9;
-      --radius:18px;
-      --shadow:0 8px 22px rgba(2, 6, 23, .12);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; color:var(--ink);
-      background:var(--bg);
-    }
-    a{color:inherit; text-decoration:none}
-    img{max-width:100%; display:block}
+<style>
+  :root{
+    --brand:#003b95;
+    --brand-2:#0a58ca;
+    --ink:#0f172a;
+    --muted:#475569;
+    --bg:#ffffff;
+    --card:#f8fafc;
+    --ring:#ffd166;
+    --success:#0ea5e9;
+    --radius:18px;
+    --shadow:0 8px 22px rgba(2, 6, 23, .12);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; color:var(--ink);
+    background:var(--bg);
+  }
+  a{color:inherit; text-decoration:none}
+  img{max-width:100%; display:block}
 
-    .header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(6px); background:rgba(255,255,255,.9); border-bottom:1px solid #e2e8f0}
-    .nav{max-width:1200px; margin:auto; display:flex; align-items:center; justify-content:space-between; padding:14px 20px}
-    .brand{display:flex; align-items:center; gap:10px}
-    .logo{
-      width:36px; height:36px; border-radius:10px; background:var(--brand); display:grid; place-items:center; color:#fff; font-weight:800;
-      box-shadow:var(--shadow)
-    }
-    .brand h1{font-size:20px; margin:0; letter-spacing:.2px}
-    .nav-actions{display:flex; align-items:center; gap:10px}
-    .btn{padding:10px 14px; border-radius:12px; border:1px solid #e2e8f0; background:#fff; font-weight:600}
-    .btn.primary{background:var(--brand); color:#fff; border-color:var(--brand)}
+  .header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(6px); background:rgba(255,255,255,.9); border-bottom:1px solid #e2e8f0}
+  .nav{max-width:1200px; margin:auto; display:flex; align-items:center; justify-content:space-between; padding:14px 20px}
+  .brand{display:flex; align-items:center; gap:10px}
+  .logo{
+    width:36px; height:36px; border-radius:10px; background:var(--brand); display:grid; place-items:center; color:#fff; font-weight:800;
+    box-shadow:var(--shadow)
+  }
+  .brand h1{font-size:20px; margin:0; letter-spacing:.2px}
+  .nav-actions{display:flex; align-items:center; gap:10px}
+  .btn{padding:10px 14px; border-radius:12px; border:1px solid #e2e8f0; background:#fff; font-weight:600; cursor:pointer;}
+  .btn.primary{background:var(--brand); color:#fff; border-color:var(--brand)}
 
-    .hero{background:linear-gradient(180deg, rgba(0,59,149,.08), transparent 60%), url('https://images.unsplash.com/photo-1543248939-ae09f0279f2d?q=80&w=1800&auto=format&fit=crop') center/cover no-repeat;}
-    .hero-wrap{max-width:1200px; margin:auto; padding:56px 20px 24px;}
-    .hero h2{font-size:48px; margin:8px 0 6px; color:var(--brand)}
-    .hero p{margin:0; color:#073a7a; font-weight:500}
+  .hero{background:linear-gradient(180deg, rgba(0,59,149,.08), transparent 60%), url('https://images.unsplash.com/photo-1543248939-ae09f0279f2d?q=80&w=1800&auto=format&fit=crop') center/cover no-repeat;}
+  .hero-wrap{max-width:1200px; margin:auto; padding:56px 20px 24px;}
+  .hero h2{font-size:48px; margin:8px 0 6px; color:var(--brand)}
+  .hero p{margin:0; color:#073a7a; font-weight:500}
 
-    .search{margin-top:24px; display:grid; grid-template-columns:2.2fr 1.5fr 1.7fr auto; gap:12px; background:#fff; padding:12px; border-radius:16px; border:2px solid var(--ring); box-shadow:var(--shadow)}
-    .field{display:flex; align-items:center; gap:10px; background:#fff; border:1px solid #e2e8f0; padding:12px 14px; border-radius:12px}
-    .field input, .field select{border:none; outline:none; width:100%; font:inherit}
-    .field small{color:var(--muted); display:block}
-    .search .submit{padding:0 22px; border:none; border-radius:12px; background:#1a73e8; color:white; font-weight:700; cursor:pointer}
+  .search{margin-top:24px; display:grid; grid-template-columns:2.2fr 1.5fr 1.7fr auto; gap:12px; background:#fff; padding:12px; border-radius:16px; border:2px solid var(--ring); box-shadow:var(--shadow)}
+  .field{display:flex; align-items:center; gap:10px; background:#fff; border:1px solid #e2e8f0; padding:12px 14px; border-radius:12px}
+  .field input, .field select{border:none; outline:none; width:100%; font:inherit}
+  .field small{color:var(--muted); display:block}
+  .search .submit{padding:0 22px; border:none; border-radius:12px; background:#1a73e8; color:white; font-weight:700; cursor:pointer}
 
-    .why{max-width:1200px; margin:28px auto 8px; padding:0 20px 20px}
-    .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
-    .card{background:var(--card); border:1px solid #e2e8f0; padding:18px; border-radius:16px}
-    .card h4{margin:0 0 6px}
-    .card p{margin:0; color:var(--muted)}
+  .why{max-width:1200px; margin:28px auto 8px; padding:0 20px 20px}
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  .card{background:var(--card); border:1px solid #e2e8f0; padding:18px; border-radius:16px; transition:transform .2s}
+  .card:hover{transform:translateY(-4px);}
+  .card h4{margin:0 0 6px}
+  .card p{margin:0; color:var(--muted)}
 
-    .section{max-width:1200px; margin:28px auto; padding:0 20px}
-    .section h3{margin:0 0 14px; font-size:26px}
-    .types{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
-    .type{background:#fff; border:1px solid #e2e8f0; border-radius:18px; overflow:hidden; box-shadow:var(--shadow)}
-    .type img{height:160px; width:100%; object-fit:cover}
-    .type .txt{padding:12px 14px; font-weight:600}
+  .section{max-width:1200px; margin:28px auto; padding:0 20px}
+  .section h3{margin:0 0 14px; font-size:26px}
+  .types{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+  .type{background:#fff; border:1px solid #e2e8f0; border-radius:18px; overflow:hidden; box-shadow:var(--shadow); cursor:pointer; transition:transform .2s}
+  .type:hover{transform:scale(1.05)}
+  .type img{height:160px; width:100%; object-fit:cover}
+  .type .txt{padding:12px 14px; font-weight:600}
 
-    .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px}
-    .dest{position:relative; border-radius:18px; overflow:hidden; box-shadow:var(--shadow); cursor:pointer}
-    .dest img{height:320px; width:100%; object-fit:cover}
-    .badge{position:absolute; left:12px; top:12px; background:rgba(0,0,0,.55); color:#fff; padding:10px 14px; border-radius:12px; font-weight:800; letter-spacing:.3px}
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px}
+  .dest{position:relative; border-radius:18px; overflow:hidden; box-shadow:var(--shadow); cursor:pointer; transition:transform .2s}
+  .dest:hover{transform:scale(1.03)}
+  .dest img{height:320px; width:100%; object-fit:cover}
+  .badge{position:absolute; left:12px; top:12px; background:rgba(0,0,0,.55); color:#fff; padding:10px 14px; border-radius:12px; font-weight:800; letter-spacing:.3px}
 
-    footer{margin-top:40px; background:#0b1c3b; color:#cbd5e1}
-    .foot{max-width:1200px; margin:auto; padding:32px 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:18px}
-    .foot h5{margin:0 0 8px}
-    .foot a{color:#e2e8f0; display:block; padding:6px 0}
-    .credits{border-top:1px solid rgba(255,255,255,.15); padding:14px 20px; text-align:center}
+  footer{margin-top:40px; background:#0b1c3b; color:#cbd5e1}
+  .foot{max-width:1200px; margin:auto; padding:32px 20px; display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:18px}
+  .foot h5{margin:0 0 8px}
+  .foot a{color:#e2e8f0; display:block; padding:6px 0}
+  .credits{border-top:1px solid rgba(255,255,255,.15); padding:14px 20px; text-align:center}
 
-    @media (max-width: 1024px){
-      .search{grid-template-columns:1.8fr 1fr 1.3fr auto}
-      .cards{grid-template-columns:1fr 1fr 1fr}
-      .types{grid-template-columns:1fr 1fr 1fr}
-    }
-    @media (max-width: 800px){
-      .nav{gap:8px}
-      .hero h2{font-size:36px}
-      .search{grid-template-columns:1fr; gap:10px}
-      .grid{grid-template-columns:1fr}
-      .cards{grid-template-columns:1fr}
-      .types{grid-template-columns:1fr 1fr}
-      .foot{grid-template-columns:1fr 1fr}
-    }
-    @media (max-width: 480px){
-      .types{grid-template-columns:1fr}
-      .foot{grid-template-columns:1fr}
-    }
-    .ico{width:18px; height:18px; opacity:.8}
-  </style>
+  /* Modal */
+  .modal{display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.6); justify-content:center; align-items:center; z-index:100;}
+  .modal-content{background:#fff; padding:24px; border-radius:16px; max-width:600px; width:90%; position:relative;}
+  .modal-close{position:absolute; top:12px; right:14px; cursor:pointer; font-size:20px; font-weight:bold;}
+
+  @media (max-width: 1024px){
+    .search{grid-template-columns:1.8fr 1fr 1.3fr auto}
+    .cards{grid-template-columns:1fr 1fr 1fr}
+    .types{grid-template-columns:1fr 1fr 1fr}
+  }
+  @media (max-width: 800px){
+    .nav{gap:8px}
+    .hero h2{font-size:36px}
+    .search{grid-template-columns:1fr; gap:10px}
+    .grid{grid-template-columns:1fr}
+    .cards{grid-template-columns:1fr}
+    .types{grid-template-columns:1fr 1fr}
+    .foot{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width: 480px){
+    .types{grid-template-columns:1fr}
+    .foot{grid-template-columns:1fr}
+  }
+  .ico{width:18px; height:18px; opacity:.8}
+</style>
 </head>
 <body>
-  <header class="header">
-    <nav class="nav">
-      <a class="brand" href="#">
-        <div class="logo">SG</div>
-        <h1>SafariGo</h1>
-      </a>
-      <div class="nav-actions">
-        <button class="btn">KES ▾</button>
-        <button class="btn">EN ▾</button>
-        <a class="btn" href="#">List your tour</a>
-        <a class="btn" href="#">Register</a>
-        <a class="btn primary" href="#">Sign in</a>
-      </div>
-    </nav>
-  </header>
+<header class="header">
+  <nav class="nav">
+    <a class="brand" href="#">
+      <div class="logo">SG</div>
+      <h1>SafariGo</h1>
+    </a>
+    <div class="nav-actions">
+      <button class="btn">KES ▾</button>
+      <button class="btn">EN ▾</button>
+      <a class="btn" href="#">List your tour</a>
+      <a class="btn" href="#">Register</a>
+      <a class="btn primary" href="#">Sign in</a>
+    </div>
+  </nav>
+</header>
 
-  <section class="hero">
-    <div class="hero-wrap">
-      <h2>Find your next adventure</h2>
-      <p>Search low prices on tours, safaris, and more…</p>
+<section class="hero">
+  <div class="hero-wrap">
+    <h2>Find your next adventure</h2>
+    <p>Search low prices on tours, safaris, and more…</p>
 
-      <form class="search" id="searchForm" onsubmit="return false">
-        <label class="field">
-          <small>Where are you going?</small>
-          <input type="text" placeholder="e.g. Nairobi, Maasai Mara" id="dest" required />
-        </label>
-        <label class="field">
-          <small>Start date</small>
-          <input type="date" id="start" required />
-        </label>
-        <label class="field">
-          <small>End date</small>
-          <input type="date" id="end" required />
-        </label>
-        <button class="submit" id="searchBtn">Search</button>
-      </form>
+    <form class="search" id="searchForm">
+      <label class="field">
+        <small>Where are you going?</small>
+        <input type="text" placeholder="e.g. Nairobi, Maasai Mara" id="dest" required />
+      </label>
+      <label class="field">
+        <small>Start date</small>
+        <input type="date" id="start" required />
+      </label>
+      <label class="field">
+        <small>End date</small>
+        <input type="date" id="end" required />
+      </label>
+      <button class="submit" id="searchBtn">Search</button>
+    </form>
 
-      <div class="why">
-        <div class="cards">
-          <div class="card"><h4>Book now, pay later</h4><p>Free cancellation on most tours.</p></div>
-          <div class="card"><h4>300k+ reviews</h4><p>Trusted ratings from real travellers.</p></div>
-          <div class="card"><h4>24/7 support</h4><p>We’re here when you need us.</p></div>
-        </div>
+    <div class="why">
+      <div class="cards">
+        <div class="card"><h4>Book now, pay later</h4><p>Free cancellation on most tours.</p></div>
+        <div class="card"><h4>300k+ reviews</h4><p>Trusted ratings from real travellers.</p></div>
+        <div class="card"><h4>24/7 support</h4><p>We’re here when you need us.</p></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section">
-    <h3>Browse by tour type</h3>
-    <div class="types">
-      <article class="type"><img src="https://images.unsplash.com/photo-1580691174798-0f3d4a8f8f4a?q=80&w=1200&auto=format&fit=crop" alt="Safari Jeep" /><div class="txt">Safaris</div></article>
-      <article class="type"><img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1200&auto=format&fit=crop" alt="Beach" /><div class="txt">Beach escapes</div></article>
-      <article class="type"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200&auto=format&fit=crop" alt="City skyline" /><div class="txt">City tours</div></article>
-      <article class="type"><img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?q=80&w=1200&auto=format&fit=crop" alt="Hiking" /><div class="txt">Adventure</div></article>
+<section class="section">
+  <h3>Browse by tour type</h3>
+  <div class="types">
+    <article class="type" onclick="filterTours('Safaris')"><img src="https://images.unsplash.com/photo-1580691174798-0f3d4a8f8f4a?q=80&w=1200&auto=format&fit=crop" alt="Safari Jeep" /><div class="txt">Safaris</div></article>
+    <article class="type" onclick="filterTours('Beach escapes')"><img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?q=80&w=1200&auto=format&fit=crop" alt="Beach" /><div class="txt">Beach escapes</div></article>
+    <article class="type" onclick="filterTours('City tours')"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1200&auto=format&fit=crop" alt="City skyline" /><div class="txt">City tours</div></article>
+    <article class="type" onclick="filterTours('Adventure')"><img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?q=80&w=1200&auto=format&fit=crop" alt="Hiking" /><div class="txt">Adventure</div></article>
+  </div>
+</section>
+
+<section class="section">
+  <h3>Trending destinations</h3>
+  <p style="color:var(--muted); margin-top:-6px">Most popular choices for travellers from Kenya</p>
+  <div class="grid">
+    <a class="dest" href="#story-nairobi" data-city="Nairobi">
+      <img src="https://images.unsplash.com/photo-1614622684706-037b5737c619?q=80&w=1600&auto=format&fit=crop" alt="Nairobi skyline" />
+      <div class="badge">Nairobi 🇰🇪</div>
+    </a>
+    <a class="dest" href="#story-mombasa" data-city="Mombasa">
+      <img src="https://images.unsplash.com/photo-1599845270946-6c744cb2516d?q=80&w=1600&auto=format&fit=crop" alt="Mombasa waterfront" />
+      <div class="badge">Mombasa 🇰🇪</div>
+    </a>
+    <a class="dest" href="#story-nakuru" data-city="Nakuru">
+      <img src="https://images.unsplash.com/photo-1603876244594-7a9989e9f90f?q=80&w=1600&auto=format&fit=crop" alt="Lake Nakuru" />
+      <div class="badge">Nakuru 🇰🇪</div>
+    </a>
+    <a class="dest" href="#story-kisumu" data-city="Kisumu">
+      <img src="https://images.unsplash.com/photo-1630930161805-1b221f6c8b9d?q=80&w=1600&auto=format&fit=crop" alt="Kisumu Lake Victoria" />
+      <div class="badge">Kisumu 🇰🇪</div>
+    </a>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal" id="storyModal">
+  <div class="modal-content">
+    <span class="modal-close" id="modalClose">&times;</span>
+    <p id="modalText"></p>
+  </div>
+</div>
+
+<footer>
+  <div class="foot">
+    <div>
+      <h5>SafariGo</h5>
+      <p style="margin:0; max-width:44ch">SafariGo helps you discover and book unforgettable tours across East Africa — from big-five safaris to coastal getaways.</p>
     </div>
-  </section>
-
-  <section class="section">
-    <h3>Trending destinations</h3>
-    <p style="color:var(--muted); margin-top:-6px">Most popular choices for travellers from Kenya</p>
-    <div class="grid">
-      <a class="dest" href="#story-nairobi" onclick="showStory('Nairobi')">
-        <img src="https://images.unsplash.com/photo-1614622684706-037b5737c619?q=80&w=1600&auto=format&fit=crop" alt="Nairobi skyline" />
-        <div class="badge">Nairobi 🇰🇪</div>
-      </a>
-      <a class="dest" href="#story-mombasa" onclick="showStory('Mombasa')">
-        <img src="https://images.unsplash.com/photo-1599845270946-6c744cb2516d?q=80&w=1600&auto=format&fit=crop" alt="Mombasa waterfront" />
-        <div class="badge">Mombasa 🇰🇪</div>
-      </a>
-      <a class="dest" href="#story-nakuru" onclick="showStory('Nakuru')">
-        <img src="https://images.unsplash.com/photo-1603876244594-7a9989e9f90f?q=80&w=1600&auto=format&fit=crop" alt="Lake Nakuru" />
-        <div class="badge">Nakuru 🇰🇪</div>
-      </a>
-      <a class="dest" href="#story-kisumu" onclick="showStory('Kisumu')">
-        <img src="https://images.unsplash.com/photo-1630930161805-1b221f6c8b9d?q=80&w=1600&auto=format&fit=crop" alt="Kisumu Lake Victoria" />
-        <div class="badge">Kisumu 🇰🇪</div>
-      </a>
+    <div>
+      <h5>Contacts</h5>
+      <p>Phone 1: <a href="tel:+254742483942">+254742483942</a></p>
+      <p>Phone 2: <a href="tel:+254742483942">+254742483942</a></p>
+      <p>Email: <a href="mailto:Timothymuriithi9@gmail.com">Timothymuriithi9@gmail.com</a></p>
     </div>
-  </section>
-
-  <footer>
-    <div class="foot">
-      <div>
-        <h5>SafariGo</h5>
-        <p style="margin:0; max-width:44ch">SafariGo helps you discover and book unforgettable tours across East Africa — from big-five safaris to coastal getaways.</p>
-      </div>
-      <div>
-        <h5>Contacts</h5>
-        <p>Phone 1: <a href="tel:+254742483942">+254742483942</a></p>
-        <p>Phone 2: <a href="tel:+254742483942">+254742483942</a></p>
-        <p>Email: <a href="mailto:Timothymuriithi9@gmail.com">Timothymuriithi9@gmail.com</a></p>
-      </div>
-      <div>
-        <h5>Support</h5>
-        <a href="#">Help centre</a>
-        <a href="#">Contact</a>
-        <a href="#">Cancellation options</a>
-      </div>
-      <div>
-        <h5>Legal</h5>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Cookies</a>
-      </div>
+    <div>
+      <h5>Support</h5>
+      <a href="#">Help centre</a>
+      <a href="#">Contact</a>
+      <a href="#">Cancellation options</a>
     </div>
-    <div class="credits">© <span id="year"></span> SafariGo Tours Ltd. All rights reserved.</div>
-  </footer>
+    <div>
+      <h5>Legal</h5>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+  <div class="credits">© <span id="year"></span> SafariGo Tours Ltd. All rights reserved.</div>
+</footer>
 
-  <script>
-    function showStory(city){
-      const stories = {
-        "Nairobi": "In Nairobi, a young traveler stumbled upon a hidden café tucked behind Kenyatta Avenue, where locals shared tales of old safaris and new dreams.",
-        "Mombasa": "In Mombasa, a fisherman told the story of a dhow that once carried spices across the Indian Ocean, linking cultures and families.",
-        "Nakuru": "At Lake Nakuru, legend says flamingos gather not just for food, but to celebrate a secret festival of colors at dawn.",
-        "Kisumu": "On the shores of Lake Victoria in Kisumu, elders tell of a spirit that guards the waters and blesses fishermen with safe journeys."
-      };
-      alert(stories[city] || "No story available.");
-    }
+<script>
+const stories = {
+  "Nairobi": "In Nairobi, a young traveler stumbled upon a hidden café tucked behind Kenyatta Avenue, where locals shared tales of old safaris and new dreams.",
+  "Mombasa": "In Mombasa, a fisherman told the story of a dhow that once carried spices across the Indian Ocean, linking cultures and families.",
+  "Nakuru": "At Lake Nakuru, legend says flamingos gather not just for food, but to celebrate a secret festival of colors at dawn.",
+  "Kisumu": "On the shores of Lake Victoria in Kisumu, elders tell of a spirit that guards the waters and blesses fishermen with safe journeys."
+};
 
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+// Show modal with story
+const modal = document.getElementById('storyModal');
+const modalText = document.getElementById('modalText');
+const modalClose = document.getElementById('modalClose');
+
+document.querySelectorAll('.dest').forEach(el=>{
+  el.addEventListener('click', e=>{
+    e.preventDefault();
+    const city = el.dataset.city;
+    modalText.textContent = stories[city] || "No story available.";
+    modal.style.display = 'flex';
+  });
+});
+
+modalClose.addEventListener('click', ()=>{modal.style.display='none';});
+window.addEventListener('click', e=>{if(e.target==modal) modal.style.display='none';});
+
+// Update year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Handle search form
+document.getElementById('searchForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const dest = document.getElementById('dest').value;
+  const start = document.getElementById('start').value;
+  const end = document.getElementById('end').value;
+  alert(`Searching tours in ${dest} from ${start} to ${end}...`);
+});
+
+// Filter tours (demo)
+function filterTours(type){
+  alert(`Filtering tours by type: ${type}`);
+}
+</script>
 </body>
 </html>
